@@ -49,3 +49,57 @@ class algebra(Scene):
         closed.to_edge(DOWN, buff=0.5)
         self.play(Write(closed))
         self.wait()
+        targetc = Paragraph(
+            "+ → No! [1+2=3]\n"
+            "- → No! [1-1=0]\n"
+            "× → No! [2×2=4]\n"
+            "÷ → No! [1÷2=0.5]",
+            t2c = {"No!": RED, "Yes!": GREEN},
+            alignment = "left",
+            line_spacing = 0.8
+        ).to_edge(DOWN,buff=0.5)
+        targets = Text("Set : {1,2}").to_edge(UP,buff=0.5)
+        self.play(ReplacementTransform(seta,targets),ReplacementTransform(closed,targetc))
+        self.wait(6)
+        seta = targets
+        closed = targetc
+        targets = Text("Set : {1,2...}").to_edge(UP,buff=0.5)
+        targetc = Paragraph(
+            "+ → Yes!\n"
+            "- → No! [1-1=0]\n"
+            "× → Yes!\n"
+            "÷ → No! [1÷2=0.5]",
+            t2c = {"No!": RED, "Yes!": GREEN},
+            alignment = "left",
+            line_spacing = 0.8
+        ).to_edge(DOWN,buff=0.5)
+        self.play(ReplacementTransform(seta,targets),ReplacementTransform(closed,targetc))
+        self.wait(5)
+        seta = targets
+        closed = targetc
+        targets = Text("Set : {0,1,2...}").to_edge(UP,buff=0.5)
+        targetc = Paragraph(
+            "+ → Yes!\n"
+            "- → No! [0-1=-1]\n"
+            "× → Yes!\n"
+            "÷ → No! [1÷2=0.5]",
+            t2c = {"No!": RED, "Yes!": GREEN},
+            alignment = "left",
+            line_spacing = 0.8
+        ).to_edge(DOWN,buff=0.5)
+        self.play(ReplacementTransform(seta,targets),ReplacementTransform(closed,targetc))
+        self.wait(3)
+        seta = targets
+        closed = targetc
+        targets = Text("Set : {...-1,0,1,2...}").to_edge(UP,buff=0.5)
+        targetc = Paragraph(
+            "+ → Yes!\n"
+            "- → Yes!\n"
+            "× → Yes!\n"
+            "÷ → No! [1÷2=0.5]",
+            t2c = {"No!": RED, "Yes!": GREEN},
+            alignment = "left",
+            line_spacing = 0.8
+        ).to_edge(DOWN,buff=0.5)
+        self.play(ReplacementTransform(seta,targets),ReplacementTransform(closed,targetc))
+        self.wait(2)

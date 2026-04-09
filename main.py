@@ -103,3 +103,54 @@ class algebra(Scene):
         ).to_edge(DOWN,buff=0.5)
         self.play(ReplacementTransform(seta,targets),ReplacementTransform(closed,targetc))
         self.wait(2)
+        # --- PREVIOUS STATE: Integers ---
+        seta = targets
+        closed = targetc
+
+        # 1. RATIONAL NUMBERS (Quotient Closure)
+        # "And we go smaller and smaller..."
+        targets = Text("Set : Rational Numbers (Q)").to_edge(UP, buff=0.5)
+        targetc = Paragraph(
+            "+ → Yes!\n"
+            "- → Yes!\n"
+            "× → Yes!\n"
+            "÷ → Yes! (except 0)",
+            t2c = {"No!": RED, "Yes!": GREEN},
+            alignment = "left",
+            line_spacing = 0.8
+        ).to_edge(DOWN, buff=0.5)
+        self.play(ReplacementTransform(seta, targets), ReplacementTransform(closed, targetc))
+        self.wait(3)
+
+        seta, closed = targets, targetc
+
+        targets = Text("Set : Algebraic Numbers (A)").to_edge(UP, buff=0.5)
+        targetc = Paragraph(
+            "Closed under all basic arithmetic\n"
+            "AND Polynomial Roots (√2, √3 etc.)\n"
+            "√ → Yes!",
+            t2c = {"Yes!": GREEN, "√": GOLD},
+            alignment = "left",
+            line_spacing = 0.8
+        ).to_edge(DOWN, buff=0.5)
+        self.play(ReplacementTransform(seta, targets), ReplacementTransform(closed, targetc))
+        self.wait(3)
+
+        seta, closed = targets, targetc
+        targets = Text("Set : Transcendental & Limits").to_edge(UP, buff=0.5)
+        targetc = Paragraph(
+            "Closed under Limits & Calculus\n"
+            "π, e → Yes!\n"
+            "Analytic Closure: Yes!",
+            t2c = {"Yes!": GREEN, "π, e": BLUE},
+            alignment = "left",
+            line_spacing = 0.8
+        ).to_edge(DOWN, buff=0.5)
+        self.play(ReplacementTransform(seta, targets), ReplacementTransform(closed, targetc))
+        self.wait(4)
+        self.play(*[FadeOut(mob) for mob in self.mobjects])
+        sus = Text("But are they?")
+        self.play(Write(sus))
+        self.play(*[FadeOut(mob) for mob in self.mobjects])
+        self.play(Write(Text("√-1",color=BLUE)))
+        self.wait(2)
